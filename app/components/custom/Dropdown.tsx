@@ -5,14 +5,16 @@ interface DropdownProps {
   options: string[];
   value: string;
   onChange: (value: string) => void;
+  disabled?: boolean;
 }
 
-const Dropdown = ({ label, options, value, onChange }: DropdownProps) => {
+const Dropdown = ({ label, options, value, onChange, disabled }: DropdownProps) => {
   return (
     <TextField
       select
       label={label}
       value={value}
+      disabled={disabled}
       onChange={(e) => onChange(e.target.value)}
       variant="outlined"
       fullWidth

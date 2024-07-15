@@ -1,15 +1,33 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  IconButton,
+  Box,
+} from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { BluetoothConnected } from "@mui/icons-material";
 
 interface DataTableProps {
   rows: any[];
   onEditClick: (row: any) => void;
   onDeleteClick: (no: number) => void;
+  onViewClick: (row: any) => void;
 }
 
-const DataTable = ({ rows, onEditClick, onDeleteClick }: DataTableProps) => {
+const DataTable = ({
+  rows,
+  onEditClick,
+  onDeleteClick,
+  onViewClick,
+}: DataTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -36,15 +54,38 @@ const DataTable = ({ rows, onEditClick, onDeleteClick }: DataTableProps) => {
               <TableCell>{row.universityDestination}</TableCell>
               <TableCell>{row.status}</TableCell>
               <TableCell>
-                <IconButton onClick={() => onEditClick(row)}>
-                  <EditIcon />
+              <Box display="flex" justifyContent="center" alignItems="center" gap={2}>
+                <IconButton
+                  style={{
+                    backgroundColor: "#0B3B5A",
+                    color: "#fff",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  <VisibilityIcon onClick={() => onViewClick(row)} />
                 </IconButton>
-                <IconButton>
-                  <VisibilityIcon />
+                <IconButton
+                  style={{
+                    backgroundColor: "#1976D2",
+                    color: "#fff",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  <EditIcon onClick={() => onEditClick(row)} />
                 </IconButton>
-                <IconButton onClick={() => onDeleteClick(row.no)}>
-                  <DeleteIcon />
+                <IconButton
+                  style={{
+                    backgroundColor: "#D32F2F",
+                    color: "#fff",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  <DeleteIcon onClick={() => onDeleteClick(row.no)} />
                 </IconButton>
+                </Box>
               </TableCell>
             </TableRow>
           ))}
@@ -61,82 +102,13 @@ export default DataTable;
 // import EditIcon from '@mui/icons-material/Edit';
 // import DeleteIcon from '@mui/icons-material/Delete';
 
-// const rows = [
-//   {
-//     no: 1,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'LoA Unconditional',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-//   {
-//     no: 2,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'LoA Unconditional',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diproses',
-//   },
-//   {
-//     no: 3,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'LoA Unconditional',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-//   {
-//     no: 4,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'LoA Unconditional',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Ditolak',
-//   },
-//   {
-//     no: 5,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'Fully Funded',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-//   {
-//     no: 6,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'Fully Funded',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-//   {
-//     no: 7,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'Fully Funded',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-//   {
-//     no: 8,
-//     date: '03 Mar 2023',
-//     menteeName: 'Nama User',
-//     bonusType: 'Fully Funded',
-//     scholarshipName: '03 Mar 2023',
-//     universityDestination: 'MIT',
-//     status: 'Diterima',
-//   },
-// ];
+// interface DataTableProps {
+//   rows: any[];
+//   onEditClick: (row: any) => void;
+//   onDeleteClick: (no: number) => void;
+// }
 
-// const DataTable = () => {
+// const DataTable = ({ rows, onEditClick, onDeleteClick }: DataTableProps) => {
 //   return (
 //     <TableContainer component={Paper}>
 //       <Table>
@@ -163,9 +135,15 @@ export default DataTable;
 //               <TableCell>{row.universityDestination}</TableCell>
 //               <TableCell>{row.status}</TableCell>
 //               <TableCell>
-//                 <IconButton><VisibilityIcon /></IconButton>
-//                 <IconButton><EditIcon /></IconButton>
-//                 <IconButton><DeleteIcon /></IconButton>
+//                 <IconButton onClick={() => onEditClick(row)}>
+//                   <EditIcon />
+//                 </IconButton>
+//                 <IconButton>
+//                   <VisibilityIcon />
+//                 </IconButton>
+//                 <IconButton onClick={() => onDeleteClick(row.no)}>
+//                   <DeleteIcon />
+//                 </IconButton>
 //               </TableCell>
 //             </TableRow>
 //           ))}
