@@ -57,6 +57,7 @@ const ModalForm = ({ open, onClose, formData, onFormChange, onSave, mode }: Moda
            <CardContent>
             <Typography variant="h6">Edit Bonus</Typography>
              <Divider sx={{ my: 2 }} />
+             
              <Grid container spacing={3} alignItems="center" sx={{ mb: 1 }}>
               <Grid item xs={12} md={3}>
                  <Typography variant="body2" color="textSecondary">

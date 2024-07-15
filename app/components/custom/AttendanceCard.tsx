@@ -1,8 +1,15 @@
-import React from 'react';
-import { Box, Card, CardContent, Typography, Grid, Button } from '@mui/material';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
-import CustomButton from './CustomButton';
+'use client'
+import React, { useState } from "react";
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  Button,
+} from "@mui/material";
+import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
+import OpsTeamRepairModal from "./InfoModal";
 
 interface CardHeaderDetailsProps {
   title: string;
@@ -21,7 +28,19 @@ const AttendanceCard: React.FC<CardHeaderDetailsProps> = ({
   buttonText,
   imageUrl,
 }) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   return (
+    <>
     <Card variant="outlined" sx={{ mb: 3 }}>
       <CardContent>
         <Grid container spacing={3} mx={3}>
@@ -34,8 +53,16 @@ const AttendanceCard: React.FC<CardHeaderDetailsProps> = ({
             </Typography>
             <Grid container spacing={2} alignItems="center" sx={{ mt: 2 }}>
               <Grid item>
-                <Box sx={{ border: '1px solid #E0E0E0', borderRadius: 2, p: 1, textAlign: 'left', padding: '20px' }}>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                <Box
+                  sx={{
+                    border: "1px solid #E0E0E0",
+                    borderRadius: 2,
+                    p: 1,
+                    textAlign: "left",
+                    padding: "20px",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ fontWeight: "bold" }}>
                     Attendance List
                   </Typography>
                   <Typography variant="body2" color="error">
@@ -44,8 +71,16 @@ const AttendanceCard: React.FC<CardHeaderDetailsProps> = ({
                 </Box>
               </Grid>
               <Grid item>
-                <Box sx={{ border: '1px solid #E0E0E0', borderRadius: 2, p: 1, textAlign: 'left', padding: '20px' }}>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
+                <Box
+                  sx={{
+                    border: "1px solid #E0E0E0",
+                    borderRadius: 2,
+                    p: 1,
+                    textAlign: "left",
+                    padding: "20px",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ fontWeight: "bold" }}>
                     Date
                   </Typography>
                   <Typography variant="body2" color="primary">
@@ -54,17 +89,36 @@ const AttendanceCard: React.FC<CardHeaderDetailsProps> = ({
                 </Box>
               </Grid>
             </Grid>
-            <CustomButton variant="contained"   sx={{ backgroundColor:"A5A6F6", mt: 3, }} startIcon={<SimCardDownloadIcon />}>
+            <Button
+              variant="contained"
+              sx={{ mt: 3, backgroundColor: "#A5A6F6", color: "white" }}
+              startIcon={<SimCardDownloadIcon />}
+              onClick={handleModalOpen}
+            >
               {buttonText}
-            </CustomButton>
+            </Button>
+
           </Grid>
 
-          <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-            <img src='/images/bonus.png' alt="Score" style={{ width: '60%', height: 'auto' }} />
+          <Grid
+            item
+            xs={12}
+            md={4}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <img
+              src="/images/bonus.png"
+              alt="Score"
+              style={{ width: "60%", height: "auto" }}
+            />
           </Grid>
         </Grid>
       </CardContent>
     </Card>
+    <OpsTeamRepairModal open={modalOpen} onClose={handleModalClose} />
+    </>
   );
 };
 
