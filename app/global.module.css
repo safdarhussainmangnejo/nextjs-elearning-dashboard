@@ -1,0 +1,19 @@
+.heading {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Inter';
+    font-weight: bold;
+    font-size: 32px;
+  }
+  .submitButton {
+    background-color: #000;
+    border: none;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+
