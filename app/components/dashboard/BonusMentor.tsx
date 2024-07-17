@@ -39,6 +39,19 @@ const initialRows = [
   // Add more rows as needed
 ];
 
+const columns = [
+  { id: 'no', label: 'No', minWidth: 50 },
+  { id: 'date', label: 'Date', minWidth: 100 },
+  { id: 'menteeName', label: 'Mentee Name', minWidth: 100 },
+  { id: 'bonusType', label: "Bonus Type", minWidth: 150 },
+  { id: 'scholarshipName', label: 'Scholarship Name', minWidth: 50 },
+  { id: 'universityDestination', label: 'university Destination', minWidth: 100 },
+  { id: 'status', label: 'Status', minWidth: 100 },
+  { id: 'mentorName', label: 'mentor Name', minWidth: 100 },
+  { id: 'dateOfFiling', label: 'date Of Filing', minWidth: 100 },
+  { id: 'startYear', label: 'start Year', minWidth: 100 },
+];
+
 const BonusMentor = () => {
   const [search, setSearch] = useState("");
   const [dateRange, setDateRange] = useState("");
@@ -120,6 +133,7 @@ const BonusMentor = () => {
         <Box mt={3}>
           <DataTable
             rows={rows}
+            columns={columns}
             onEditClick={handleEditClick}
             onDeleteClick={handleDelete}
             onViewClick={handleViewClick}
