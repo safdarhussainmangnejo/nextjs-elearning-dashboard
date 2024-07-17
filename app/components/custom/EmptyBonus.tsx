@@ -1,7 +1,14 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import { Image } from 'react-bootstrap';
 
-const EmptyBonus: React.FC = () => {
+interface EmptyCardProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
+const EmptyBonus = ({title, description, image}: EmptyCardProps) => {
   return (
     <Box
       display="flex"
@@ -14,18 +21,19 @@ const EmptyBonus: React.FC = () => {
     >
       <Box
         component="img"
-        src="/images/bonus.png"
+        src={image}
         alt="A+ Score"
         width="150px"
         height="150px"
         mb={2}
       />
-      <Box maxWidth="350px">
+      <Box maxWidth="380px">
         <Typography variant="h6" color="textPrimary">
-          No Bonuses Have Been Recorded
+          {title}
+          
         </Typography>
         <Typography variant="body2" color="textSecondary">
-          Are you sure you want to accept this?
+          {description}
         </Typography>
       </Box>
     </Box>

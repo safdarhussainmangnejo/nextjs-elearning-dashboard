@@ -24,9 +24,10 @@ interface ModalFormProps {
   formData: any;
   onFormChange: (field: string, value: any) => void;
   onSave: () => void;
+  title?: string;
 }
 
-const ModalForm = ({ open, onClose, formData, onFormChange, onSave, mode }: ModalFormProps) => {
+const ModalForm = ({ open, onClose, formData, onFormChange, onSave, mode, title= 'Details' }: ModalFormProps) => {
   const isEdit = mode == FORMMODE.Edit
   const isView = mode == FORMMODE.View
   const isDisabled = mode == FORMMODE.View
@@ -47,7 +48,7 @@ const ModalForm = ({ open, onClose, formData, onFormChange, onSave, mode }: Moda
         }}
       >
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="h5">Edit Bonus</Typography>
+          <Typography variant="h5">{isEdit ? `Edit ${title}`: `View ${title}`}</Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
@@ -55,7 +56,7 @@ const ModalForm = ({ open, onClose, formData, onFormChange, onSave, mode }: Moda
         
         <Card variant="outlined" sx={{ mb: 2 }}>
            <CardContent>
-            <Typography variant="h6">Edit Bonus</Typography>
+            <Typography variant="h6">{isEdit ? `Edit ${title}`: `View ${title}`}</Typography>
              <Divider sx={{ my: 2 }} />
              
              <Grid container spacing={3} alignItems="center" sx={{ mb: 1 }}>

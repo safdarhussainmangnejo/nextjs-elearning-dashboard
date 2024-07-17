@@ -1,3 +1,4 @@
+'use server'
 import React from 'react'
 import { ThemeContextProvider } from '../theme/ThemeContext';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -6,15 +7,15 @@ import theme from '../theme';
 import DaftarHadirForm from '../components/dashboard/DaftarHadir';
 export const DaftarHadir = () => {
     return (
-      <ThemeContextProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {/* <Component {...pageProps} /> */}
-          <Layout>
-          <DaftarHadirForm />
-          </Layout>
-        </ThemeProvider>
-      </ThemeContextProvider>
+      <DaftarHadirForm />
+      // <ThemeContextProvider>
+      //   <ThemeProvider theme={theme}>
+      //     <CssBaseline />
+      //     <Layout>
+      //     <DaftarHadirForm />
+      //     </Layout>
+      //   </ThemeProvider>
+      // </ThemeContextProvider>
       );
 }
 

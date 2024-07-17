@@ -8,43 +8,44 @@ import DataTable from "../custom/DataTable";
 import ModalForm from "../custom/ModalForm";
 import { FORMMODE } from "@/app/utils/constants";
 import EmptyBonus from "../custom/EmptyBonus";
-
-const initialRows = [
-  {
-    no: 1,
-    date: "03 Mar 2023",
-    menteeName: "Nama User",
-    bonusType: "LoA Unconditional",
-    scholarshipName: "03 Mar 2023",
-    universityDestination: "MIT",
-    status: "Diterima",
-    mentorName: "Nama User",
-    dateOfFiling: "23 October 2023",
-    startYear: "2023",
-    attachments: [{ name: "Payslips_20 Aug.pdf" }],
-  },
-  {
-    no: 2,
-    date: "03 Mar 2023",
-    menteeName: "Safdar",
-    bonusType: "LoA Unconditional",
-    scholarshipName: "03 Mar 2023",
-    universityDestination: "Oxford",
-    status: "Diterima",
-    mentorName: "Safdar",
-    dateOfFiling: "23 October 2023",
-    startYear: "2023",
-    attachments: [{ name: "Payslips_20 Aug.pdf" }],
-  },
+import { rowsMentorAttendance, columnsMentorAttendance } from '../../utils/dummyData'
+const initialRows: any = [
+//   {
+//     no: 1,
+//     date: "03 Mar 2023",
+//     menteeName: "Nama User",
+//     bonusType: "LoA Unconditional",
+//     scholarshipName: "03 Mar 2023",
+//     universityDestination: "MIT",
+//     status: "Diterima",
+//     mentorName: "Nama User",
+//     dateOfFiling: "23 October 2023",
+//     startYear: "2023",
+//     attachments: [{ name: "Payslips_20 Aug.pdf" }],
+//   },
+//   {
+//     no: 2,
+//     date: "03 Mar 2023",
+//     menteeName: "Safdar",
+//     bonusType: "LoA Unconditional",
+//     scholarshipName: "03 Mar 2023",
+//     universityDestination: "Oxford",
+//     status: "Diterima",
+//     mentorName: "Safdar",
+//     dateOfFiling: "23 October 2023",
+//     startYear: "2023",
+//     attachments: [{ name: "Payslips_20 Aug.pdf" }],
+//   },
   // Add more rows as needed
 ];
 
-const BonusMentor = () => {
+const DaftarAttendance = () => {
   const [search, setSearch] = useState("");
   const [dateRange, setDateRange] = useState("");
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState(rowsMentorAttendance);
+  const [columns, setColumns] = useState(columnsMentorAttendance);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<any>(null);
   const [mode, setMode] = useState(FORMMODE.Disabled)
@@ -66,15 +67,15 @@ const BonusMentor = () => {
   };
 
   const handleSave = () => {
-    setRows((prevRows) =>
-      prevRows.map((row) => (row.no === selectedRow.no ? selectedRow : row))
+    setRows((prevRows:any) =>
+      prevRows.map((row:any) => (row.no === selectedRow.no ? selectedRow : row))
     );
     setModalOpen(false);
     setMode(FORMMODE.Disabled)
   };
 
   const handleDelete = (no: number) => {
-    setRows((prevRows) => prevRows.filter((row) => row.no !== no));
+    setRows((prevRows:any) => prevRows.filter((row:any) => row.no !== no));
   };
 
   return (
@@ -86,7 +87,7 @@ const BonusMentor = () => {
         <Grid container spacing={3} alignItems="center" sx={{ mb: 3 }}>
           <Grid item xs={12} md={6}>
             <Typography variant="h5" gutterBottom>
-              Bonus Mentor
+              Attendance List
             </Typography>
           </Grid>
           <Grid item xs={12} md={2}>
@@ -117,27 +118,29 @@ const BonusMentor = () => {
             />
           </Grid>
         </Grid>
-        <Box mt={3}>
-          <DataTable
+        <Box mt={1}>
+          {rows.length > 0 ? <DataTable
+            columns={columns}
             rows={rows}
             onEditClick={handleEditClick}
             onDeleteClick={handleDelete}
             onViewClick={handleViewClick}
-          />
+          /> : (<EmptyBonus title="No Attendance List Have Been Recorded" description="Are you sure you want to accept this?" image="/images/attendance.png"/>)}
         </Box>
-        {selectedRow ? (
+        {selectedRow && (
           <ModalForm
             open={modalOpen}
+            title="Menotring"
             onClose={() => setModalOpen(false)}
             formData={selectedRow}
             onFormChange={handleFormChange}
             onSave={handleSave}
             mode={mode}
           />
-        ) : (<EmptyBonus title="No Bonuses Have Been Recorded" description="Are you sure you want to accept this?" image="/images/bonus.png"/>)}
+        ) }
       </Box>
     </Container>
   );
 };
 
-export default BonusMentor;
+export default DaftarAttendance;
